@@ -11,15 +11,14 @@ A simple REST API built with Python Flask, containerized with Docker, and deploy
 ├── app.py                    # Flask REST API
 ├── requirements.txt          # Python dependencies
 ├── Dockerfile                # Multi-stage Docker build
-├── k8s/
+├── Kubernetes/
 │   ├── deployment.yaml       # Kubernetes Deployment
 │   └── service.yaml          # Kubernetes NodePort Service
 ├── screenshots/
-│   ├── kubeadm-init-success.png
-│   ├── calico-pods-running.png
-│   ├── kubectl-get-pods.png
-│   ├── kubectl-get-services.png
-│   └── app-curl-output.png
+│   ├── cluster-initialized.png
+│   ├── cluster-ready-status.png
+│   ├── cluster-ready-status.png
+│   └── cluster-ready-status.png
 └── README.md
 ```
 
@@ -208,15 +207,15 @@ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 ## Part 4 — Deploy the Application
 
-**1. Created [`k8s/deployment.yaml`](k8s/deployment.yaml)** — uses the DockerHub image pushed earlier, 2 replicas, resource limits, liveness and readiness probes.
+**1. Created [`Kubernetes/deployment.yaml`](Kubernetes/deployment.yaml)** — uses the DockerHub image pushed earlier, 2 replicas, resource limits, liveness and readiness probes.
 
-**2. Created [`k8s/service.yaml`](k8s/service.yaml)** — NodePort service exposing the API externally. NodePort was chosen since there is direct access to the node's IP.
+**2. Created [`Kubernetes/service.yaml`](Kubernetes/service.yaml)** — NodePort service exposing the API externally. NodePort was chosen since there is direct access to the node's IP.
 
 **3. Apply manifests:**
 
 ```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+kubectl apply -f Kubernetes/deployment.yaml
+kubectl apply -f Kubernetes/service.yaml
 ```
 
 **4. Verify:**
