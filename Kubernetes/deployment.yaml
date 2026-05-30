@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: flask-api
-          image: hananpp/flask-k8s-api:latest
+          image: ghcr.io/rahmanhanan7/prophaze-assignment:main
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
